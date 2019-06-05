@@ -32,4 +32,46 @@ require_once($CFG->dirroot . '/question/type/essay/questiontype.php');
  */
 class qtype_rgessay extends qtype_essay {
 
+    public function get_question_options($question) {
+        global $DB;
+        $question->options = $DB->get_record('qtype_rgessay_options',
+            array('questionid' => $question->id), '*', MUST_EXIST);
+        parent::get_question_options($question);
+    }
+
+    public function save_question_options($formdata) {
+        global $DB;
+        $context = $formdata->context;
+
+        $options = $DB->get_record('qtype_rgessay_options', array('questionid' => $formdata->id));
+        if (!$options) {
+            $options = new stdClass();
+            $options->questionid = $formdata->id;
+            $options->id = $DB->insert_record('qtype_rgessay_options', $options);
+        }
+
+        $options->responseformat = $formdata->responseformat;
+        $options->responserequired = $formdata->responserequired;
+        $options->responsefieldlines = $formdata->responsefieldlines;
+        $options->attachments = $formdata->attachments;
+        $options->attachmentsrequired = $formdata->attachmentsrequired;
+        if (!isset($formdata->filetypeslist)) {
+            $options->filetypeslist = "";
+        } else {
+            $options->filetypeslist = $formdata->filetypeslist;
+        }
+
+        // Removed graderinfo as it as been removed from form
+
+        /*
+        $options->graderinfo = $this->import_or_save_files($formdata->graderinfo,
+            $context, 'qtype_essay', 'graderinfo', $formdata->id);
+        $options->graderinfoformat = $formdata->graderinfo['format'];
+        */
+
+        $options->responsetemplate = $formdata->responsetemplate['text'];
+        $options->responsetemplateformat = $formdata->responsetemplate['format'];
+        $DB->update_record('qtype_essay_options', $options);
+    }
+
 }

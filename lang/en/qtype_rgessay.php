@@ -30,3 +30,4 @@ $string['pluginname_link'] = 'question/type/rgessay';
 $string['pluginnameadding'] = 'Adding an RG Essay question';
 $string['pluginnameediting'] = 'Editing an RG Essay question';
 $string['rubricsheader'] = 'Rubric grading';
+$string['chooserubric'] = 'Choose a rubric';

@@ -25,7 +25,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 $plugin->component = 'qtype_rgessay';
-$plugin->version   = 2019060300;
+$plugin->version   = 2019060301;
 
 $plugin->requires  = 2019051100;
 $plugin->maturity  = MATURITY_ALPHA;
