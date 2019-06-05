@@ -32,4 +32,16 @@ require_once($CFG->dirroot . '/question/type/essay/question.php');
  */
 class qtype_rgessay_question extends qtype_essay_question {
 
+    public function make_behaviour(question_attempt $qa, $preferredbehaviour) {
+        return question_engine::make_behaviour('rubricgraded', $qa, $preferredbehaviour);
+    }
+
+    /**
+     * @param moodle_page the page we are outputting to.
+     * @return qtype_essay_format_renderer_base the response-format-specific renderer.
+     */
+    public function get_format_renderer(moodle_page $page) {
+        return $page->get_renderer('qtype_rgessay', 'format_' . $this->responseformat);
+    }
+
 }
