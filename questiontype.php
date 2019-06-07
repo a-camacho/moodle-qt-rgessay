@@ -79,7 +79,11 @@ class qtype_rgessay extends question_type {
 
         $options->responsetemplate = $formdata->responsetemplate['text'];
         $options->responsetemplateformat = $formdata->responsetemplate['format'];
-        $DB->update_record('qtype_essay_options', $options);
+
+        // Save rubric value in database
+        $options->rubricid = $formdata->chooserubric;
+
+        $DB->update_record('qtype_rgessay_options', $options);
     }
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
