@@ -58,7 +58,7 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
         }
 
         // Essay savepoint reached.
-        upgrade_plugin_savepoint(true, 2018021800, 'qtype', 'rgessay');
+        upgrade_plugin_savepoint(true, 2019060304, 'qtype', 'rgessay');
     }
 
     // Automatically generated Moodle v3.5.0 release upgrade line.
