@@ -18,10 +18,12 @@
                 <FIELD NAME="responsetemplate" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="The template to pre-populate student's response field during attempt."/>
                 <FIELD NAME="responsetemplateformat" TYPE="int" LENGTH="4" NOTNULL="true" DEFAULT="0" SEQUENCE="false" COMMENT="The text format for responsetemplate."/>
                 <FIELD NAME="filetypeslist" TYPE="text" NOTNULL="false" SEQUENCE="false" COMMENT="What attachment file type a student is allowed to include with their response. * or empty means unlimited."/>
+                <FIELD NAME="rubricid" TYPE="int" NOTNULL="false" SEQUENCE="false" COMMENT="Which Moodle rubric do you want to link this question to."/>
             </FIELDS>
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="questionid" TYPE="foreign-unique" FIELDS="questionid" REFTABLE="question" REFFIELDS="id"/>
+                <KEY NAME="rubricid" TYPE="foreign-unique" FIELDS="rubricid" REFTABLE="gradingform_rubric_criteria" REFFIELDS="definitionid"/>
             </KEYS>
         </TABLE>
     </TABLES>
