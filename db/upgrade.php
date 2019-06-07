@@ -46,11 +46,11 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
     // Automatically generated Moodle v3.4.0 release upgrade line.
     // Put any upgrade step following this.
 
-    if ($oldversion < 2019060303) {
+    if ($oldversion < 2019060304) {
 
         // Add "filetypeslist" column to the question type options to save the allowed file types.
         $table = new xmldb_table('qtype_rgessay_options');
-        $field = new xmldb_field('rubricid', XMLDB_TYPE_INTEGER, null, null, null, null, null, 'filetypeslist');
+        $field = new xmldb_field('rubricid', XMLDB_TYPE_INTEGER, 10, null, null, null, null, 'filetypeslist');
 
         // Conditionally launch add field filetypeslist.
         if (!$dbman->field_exists($table, $field)) {
