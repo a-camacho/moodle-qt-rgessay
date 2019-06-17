@@ -81,22 +81,20 @@ class qtype_rgessay extends question_type {
         $options->responsetemplateformat = $formdata->responsetemplate['format'];
 
         // Save rubric value in database
-        $options->rubricid = $formdata->chooserubric;
+        $options->rubricid = $formdata->rubricid;
 
         $DB->update_record('qtype_rgessay_options', $options);
     }
 
     protected function initialise_question_instance(question_definition $question, $questiondata) {
         parent::initialise_question_instance($question, $questiondata);
+
         $question->responseformat = $questiondata->options->responseformat;
         $question->responserequired = $questiondata->options->responserequired;
         $question->responsefieldlines = $questiondata->options->responsefieldlines;
         $question->attachments = $questiondata->options->attachments;
         $question->attachmentsrequired = $questiondata->options->attachmentsrequired;
-        /*
-        $question->graderinfo = $questiondata->options->graderinfo;
-        $question->graderinfoformat = $questiondata->options->graderinfoformat;
-        */
+
         $question->responsetemplate = $questiondata->options->responsetemplate;
         $question->responsetemplateformat = $questiondata->options->responsetemplateformat;
         $filetypesutil = new \core_form\filetypes_util();
