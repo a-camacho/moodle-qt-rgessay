@@ -73,13 +73,6 @@ class qtype_rgessay_edit_form extends qtype_essay_edit_form {
 
         /* Removed grader information as we will replace it with rubrics */
 
-        /*
-        $mform->addElement('header', 'graderinfoheader', get_string('graderinfoheader', 'qtype_essay'));
-        $mform->setExpanded('graderinfoheader');
-        $mform->addElement('editor', 'graderinfo', get_string('graderinfo', 'qtype_essay'),
-            array('rows' => 10), $this->editoroptions);
-        */
-
         $mform->addElement('header', 'rubricsheader', get_string('rubricsheader', 'qtype_rgessay'));
         $mform->setExpanded('rubricsheader');
 
