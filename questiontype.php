@@ -101,6 +101,8 @@ class qtype_rgessay extends question_type {
         $question->responsetemplateformat = $questiondata->options->responsetemplateformat;
         $filetypesutil = new \core_form\filetypes_util();
         $question->filetypeslist = $filetypesutil->normalize_file_types($questiondata->options->filetypeslist);
+
+        $question->rubricid = $questiondata->options->rubricid;
     }
 
     public function delete_question($questionid, $contextid) {
