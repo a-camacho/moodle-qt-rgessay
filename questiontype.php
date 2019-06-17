@@ -111,6 +111,18 @@ class qtype_rgessay extends question_type {
     }
 
     /**
+     * Defines the table which extends the question table. This allows the base questiontype
+     * to automatically save, backup and restore the extra fields.
+     *
+     * @return an array with the table name (first) and then the column names (apart from id and questionid)
+     */
+    public function extra_question_fields() {
+        return array('qtype_rgessay_options',
+            'rubricid',        // ID of rubric definition to use to grade question
+        );
+    }
+
+    /**
      * @return array the different response formats that the question type supports.
      * internal name => human-readable name.
      *
