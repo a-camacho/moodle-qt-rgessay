@@ -26,6 +26,7 @@
                 <KEY NAME="rubricid" TYPE="foreign-unique" FIELDS="rubricid" REFTABLE="gradingform_rubric_criteria" REFFIELDS="definitionid"/>
             </KEYS>
         </TABLE>
+        <!-- This table will only be used starting from version 2.0 -->
         <TABLE NAME="qtype_rgessay_rub_fillings" COMMENT="Stores the data of how the rubric is filled by a particular rater">
             <FIELDS>
                 <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
