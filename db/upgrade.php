@@ -46,6 +46,49 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
     // Automatically generated Moodle v3.4.0 release upgrade line.
     // Put any upgrade step following this.
 
+    if ($oldversion < 2019061801) {
+
+        // Add "qtype_rgessay_rubric_fillings" table.
+        $table = new xmldb_table('qtype_rgessay_rub_fillings');
+
+        if (!$dbman->table_exists($table)) {
+            $dbman->create_table($table);
+        }
+
+        $fields = array();
+
+        $field_id = new xmldb_field('id', XMLDB_TYPE_INTEGER, null, null, null, null, null, null);
+        array_push($fields, $field_id);
+
+        $field_instanceid = new xmldb_field('instanceid', XMLDB_TYPE_INTEGER, null, null, null, null, null, 'id');
+        array_push($fields, $field_instanceid);
+
+        $field_criterionid = new xmldb_field('criterionid', XMLDB_TYPE_INTEGER, null, null, null, null, null, 'instanceid');
+        array_push($fields, $field_criterionid);
+
+        $field_levelid = new xmldb_field('levelid', XMLDB_TYPE_INTEGER, null, null, null, null, null, 'criterionid');
+        array_push($fields, $field_levelid);
+
+        $field_remark = new xmldb_field('remark', XMLDB_TYPE_TEXT, null, null, null, null, null, 'levelid');
+        array_push($fields, $field_remark);
+
+        $field_remarkformat = new xmldb_field('remarkformat', XMLDB_TYPE_INTEGER, null, null, null, null, null, 'remark');
+        array_push($fields, $field_remarkformat);
+
+        // Conditionally launch add field for all fields.
+        foreach ( $fields as $field ) {
+
+            if (!$dbman->field_exists($table, $field)) {
+                $dbman->add_field($table, $field);
+            }
+
+        }
+
+        // Essay savepoint reached.
+        upgrade_plugin_savepoint(true, 2019061801, 'qtype', 'rgessay');
+
+    }
+
     if ($oldversion < 2019060304) {
 
         // Add "filetypeslist" column to the question type options to save the allowed file types.
