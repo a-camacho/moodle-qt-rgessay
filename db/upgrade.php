@@ -46,7 +46,7 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
     // Automatically generated Moodle v3.4.0 release upgrade line.
     // Put any upgrade step following this.
 
-    if ($oldversion < 2019061803) {
+    if ($oldversion < 2019061901) {
 
         if (!$dbman->table_exists('qtype_rgessay_rub_fillings')) {
 
@@ -73,7 +73,7 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
             $dbman->create_table($table);
         }
         // Essay savepoint reached.
-        upgrade_plugin_savepoint(true, 2019061801, 'qtype', 'rgessay');
+        upgrade_plugin_savepoint(true, 2019061901, 'qtype', 'rgessay');
 
     }
 
@@ -89,7 +89,7 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
         }
 
         // Essay savepoint reached.
-        upgrade_plugin_savepoint(true, 2019061803, 'qtype', 'rgessay');
+        upgrade_plugin_savepoint(true, 2019060304, 'qtype', 'rgessay');
     }
 
     // Automatically generated Moodle v3.5.0 release upgrade line.
