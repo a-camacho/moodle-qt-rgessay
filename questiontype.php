@@ -114,7 +114,7 @@ class qtype_rgessay extends question_type {
      * Defines the table which extends the question table. This allows the base questiontype
      * to automatically save, backup and restore the extra fields.
      *
-     * @return an array with the table name (first) and then the column names (apart from id and questionid)
+     * @return array with the table name (first) and then the column names (apart from id and questionid)
      */
     public function extra_question_fields() {
         return array('qtype_rgessay_options',
@@ -188,21 +188,15 @@ class qtype_rgessay extends question_type {
         );
     }
 
-    /*
-
-    public function move_files($questionid, $oldcontextid, $newcontextid) {
-        parent::move_files($questionid, $oldcontextid, $newcontextid);
-        $fs = get_file_storage();
-        $fs->move_area_files_to_new_context($oldcontextid,
-            $newcontextid, 'qtype_rgessay', 'graderinfo', $questionid);
+    /**
+     * Create a question_answer, or an appropriate subclass for this question,
+     * from a row loaded from the database.
+     * @param object $answer the DB row from the question_answers table plus extra answer fields.
+     * @return question_answer
+     */
+    protected function make_answer($answer) {
+        return new qtype_rgessay_answer($answer->id, $answer->answer,
+            $answer->fraction, $answer->feedback, $answer->feedbackformat, 2);
     }
-
-    protected function delete_files($questionid, $contextid) {
-        parent::delete_files($questionid, $contextid);
-        $fs = get_file_storage();
-        $fs->delete_area_files($contextid, 'qtype_essay', 'graderinfo', $questionid);
-    }
-
-    */
 
 }
