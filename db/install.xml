@@ -23,28 +23,8 @@
             <KEYS>
                 <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
                 <KEY NAME="questionid" TYPE="foreign-unique" FIELDS="questionid" REFTABLE="question" REFFIELDS="id"/>
-                <KEY NAME="rubricid" TYPE="foreign-unique" FIELDS="rubricid" REFTABLE="gradingform_rubric_criteria" REFFIELDS="definitionid"/>
+                <KEY NAME="rubricid" TYPE="foreign" FIELDS="rubricid" REFTABLE="gradingform_rubric_criteria" REFFIELDS="definitionid"/>
             </KEYS>
-        </TABLE>
-        <!-- This table will only be used starting from version 2.0 -->
-        <TABLE NAME="qtype_rgessay_rub_fillings" COMMENT="Stores the data of how the rubric is filled by a particular rater">
-            <FIELDS>
-                <FIELD NAME="id" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="true"/>
-                <FIELD NAME="instanceid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The ID of the grading form instance"/>
-                <FIELD NAME="criterionid" TYPE="int" LENGTH="10" NOTNULL="true" SEQUENCE="false" COMMENT="The ID of the criterion (row) in the rubric"/>
-                <FIELD NAME="levelid" TYPE="int" LENGTH="10" NOTNULL="false" SEQUENCE="false" COMMENT="If a particular level was selected during the assessment, its ID is stored here"/>
-                <FIELD NAME="remark" TYPE="text" LENGTH="big" NOTNULL="false" SEQUENCE="false" COMMENT="Side note feedback regarding this particular criterion"/>
-                <FIELD NAME="remarkformat" TYPE="int" LENGTH="2" NOTNULL="false" SEQUENCE="false" COMMENT="The format of the remark field"/>
-            </FIELDS>
-            <KEYS>
-                <KEY NAME="primary" TYPE="primary" FIELDS="id"/>
-                <KEY NAME="fk_instanceid" TYPE="foreign" FIELDS="instanceid" REFTABLE="grading_instances" REFFIELDS="id"/>
-                <KEY NAME="fk_criterionid" TYPE="foreign" FIELDS="criterionid" REFTABLE="gradingform_rubric_criteria" REFFIELDS="id"/>
-                <KEY NAME="uq_instance_criterion" TYPE="unique" FIELDS="instanceid, criterionid"/>
-            </KEYS>
-            <INDEXES>
-                <INDEX NAME="ix_levelid" UNIQUE="false" FIELDS="levelid" COMMENT="levelid acts as a foreign key but null values are allowed"/>
-            </INDEXES>
         </TABLE>
     </TABLES>
 </XMLDB>
