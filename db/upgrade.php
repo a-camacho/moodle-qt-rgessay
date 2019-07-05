@@ -46,52 +46,6 @@ function xmldb_qtype_rgessay_upgrade($oldversion) {
     // Automatically generated Moodle v3.4.0 release upgrade line.
     // Put any upgrade step following this.
 
-    if ($oldversion < 2019061901) {
-
-        if (!$dbman->table_exists('qtype_rgessay_rub_fillings')) {
-
-            // Define table qtype_rgessay_rub_fillings to be created.
-            $table = new xmldb_table('qtype_rgessay_rub_fillings');
-
-            // Adding fields to table qtype_rgessay_rub_fillings.
-            $table->add_field('id', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, XMLDB_SEQUENCE, null);
-            $table->add_field('instanceid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
-            $table->add_field('criterionid', XMLDB_TYPE_INTEGER, '10', null, XMLDB_NOTNULL, null, null);
-            $table->add_field('levelid', XMLDB_TYPE_INTEGER, '10', null, null, null, null);
-            $table->add_field('remark', XMLDB_TYPE_TEXT, null, null, null, null, null);
-            $table->add_field('remarkformat', XMLDB_TYPE_INTEGER, '2', null, null, null, null);
-
-            // Adding keys to table qtype_rgessay_rub_fillings.
-            $table->add_key('primary', XMLDB_KEY_PRIMARY, ['id']);
-            $table->add_key('fk_instanceid', XMLDB_KEY_FOREIGN, ['instanceid'], 'grading_instances', ['id']);
-            $table->add_key('fk_criterionid', XMLDB_KEY_FOREIGN, ['criterionid'], 'gradingform_rubric_criteria', ['id']);
-            $table->add_key('uq_instance_criterion', XMLDB_KEY_UNIQUE, ['instanceid', 'criterionid']);
-
-            // Adding indexes to table qtype_rgessay_rub_fillings.
-            $table->add_index('ix_levelid', XMLDB_INDEX_NOTUNIQUE, ['levelid']);
-
-            $dbman->create_table($table);
-        }
-        // Essay savepoint reached.
-        upgrade_plugin_savepoint(true, 2019061901, 'qtype', 'rgessay');
-
-    }
-
-    if ($oldversion < 2019060304) {
-
-        // Add "filetypeslist" column to the question type options to save the allowed file types.
-        $table = new xmldb_table('qtype_rgessay_options');
-        $field = new xmldb_field('rubricid', XMLDB_TYPE_INTEGER, 10, null, null, null, null, 'filetypeslist');
-
-        // Conditionally launch add field filetypeslist.
-        if (!$dbman->field_exists($table, $field)) {
-            $dbman->add_field($table, $field);
-        }
-
-        // Essay savepoint reached.
-        upgrade_plugin_savepoint(true, 2019060304, 'qtype', 'rgessay');
-    }
-
     // Automatically generated Moodle v3.5.0 release upgrade line.
     // Put any upgrade step following this.
 
