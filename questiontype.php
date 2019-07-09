@@ -199,4 +199,25 @@ class qtype_rgessay extends question_type {
             $answer->fraction, $answer->feedback, $answer->feedbackformat, 2);
     }
 
+    /**
+     * Get an array of id's and names of rubrics created on this course
+     * @return array
+     * @throws dml_exception
+     */
+    public function get_rubrics_from_course() {
+        global $DB, $USER;
+
+        $definitions = $DB->get_records('grading_definitions', array( 'usercreated' => $USER->id, 'method' => 'rubric' ), '', 'id,name' );
+        $array = array();
+
+        // Add default value
+        $array[0] = '';
+
+        foreach ( $definitions as $definition ) {
+            $array[$definition->id] = $definition->name;
+        }
+
+        return $array;
+    }
+
 }
