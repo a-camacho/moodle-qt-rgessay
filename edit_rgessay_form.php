@@ -76,9 +76,10 @@ class qtype_rgessay_edit_form extends qtype_essay_edit_form {
         $mform->addElement('header', 'rubricsheader', get_string('rubricsheader', 'qtype_rgessay'));
         $mform->setExpanded('rubricsheader');
 
-        $mform->addElement('text', 'rubricid', get_string('rubricid', 'qtype_rgessay'), array('size'=>'20') );
+        $mform->addElement('select', 'rubricid', get_string('rubricid', 'qtype_rgessay'), $qtype->get_rubrics_from_course());
         $mform->setType('rubricid', PARAM_INT);
         $mform->addRule('rubricid', null, 'required');
+
 
     }
 
