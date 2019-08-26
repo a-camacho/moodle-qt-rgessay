@@ -68,7 +68,7 @@ class restore_qtype_rgessay_plugin extends restore_qtype_plugin {
      */
     public static function define_decode_contents() {
         return array(
-            new restore_decode_content('qtype_ressay_options', 'graderinfo', 'qtype_rgessay'),
+            new restore_decode_content('qtype_rgessay_options', 'graderinfo', 'qtype_rgessay'),
         );
     }
 
